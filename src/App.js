@@ -1,5 +1,7 @@
 import React, { Fragment } from "react"
-import styled, { css, createGlobalStyle, keyframes } from "styled-components"
+import styled, { css, createGlobalStyle, keyframes, ThemeProvider } from "styled-components"
+import ApplyInput from "./ApplyInput"
+import theme from "./theme"
 
 const GloabalStyle = createGlobalStyle`
 body {
@@ -12,16 +14,19 @@ body {
 function App() {
   return (
     <Fragment>
-      <Container>
-        <Button>test</Button>
-        <Button danger rotationTime={5}>
-          Danger{" "}
-        </Button>
-        <Button as="a" href="http://google.com" css="{text-decoration: none}">
-          Google
-        </Button>
-      </Container>
-      <GloabalStyle />
+      <ThemeProvider theme={theme}>
+        <Container>
+          <Button>test</Button>
+          <Button danger rotationTime={5}>
+            Danger{" "}
+          </Button>
+          <Button as="a" href="http://google.com" css="{text-decoration: none}">
+            Google
+          </Button>
+          <ApplyInput></ApplyInput>
+        </Container>
+        <GloabalStyle />
+      </ThemeProvider>
     </Fragment>
   )
 }
@@ -67,6 +72,11 @@ const Button = styled.button`
   }
   background-color: ${props => (props.danger ? "#eb4d4b" : "white")};
   animation: ${props => rotationAnimation(props)};
+`
+const Card = styled.div`
+  background-color: white;
+`
+const Form = () => <Card></Card>
 `
 
 export default App
